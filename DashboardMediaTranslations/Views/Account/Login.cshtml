@@ -1,0 +1,125 @@
+﻿@using DashboardMediaTranslations.Models
+@model LoginViewModel
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Media-Translations Dashboard </title>
+    <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
+    <meta name="keywords" content="application" />
+    <meta name="author" content="Hector Kong Andia" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- vector map CSS -->
+    <link href="~/vendors/bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+
+
+    <!-- Custom CSS -->
+    <link href="~/dist/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <!--Preloader-->
+    <div class="preloader-it">
+        <div class="la-anim-1"></div>
+    </div>
+    <!--/Preloader-->
+
+    <div class="wrapper pa-0">
+        <header class="sp-header">
+            <div class="sp-logo-wrap pull-left">
+                <a href="index.html">
+                    <img class="brand-img mr-10" src="~/dist/img/logo.png" alt="brand" />
+                    <span class="brand-text">Media Translations</span>
+                </a>
+            </div>
+            <div class="form-group mb-0 pull-right">
+                <span class="inline-block pr-10">Don't have an account?</span>
+                @Html.ActionLink("Sign Up", "Register",null,new { @class = "inline-block btn btn-info btn-rounded btn-outline" })               
+            </div>
+            <div class="clearfix"></div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="page-wrapper pa-0 ma-0 auth-page">
+            <div class="container-fluid">
+                <!-- Row -->
+                <div class="table-struct full-width full-height">
+                    <div class="table-cell vertical-align-middle auth-form-wrap">
+                        <div class="auth-form  ml-auto mr-auto no-float">
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12">
+                                    <div class="mb-30">
+                                        <h3 class="text-center txt-dark mb-10">Sign in to Media Translations</h3>
+                                        <h6 class="text-center nonecase-font txt-grey">Enter your details below</h6>
+                                    </div>
+                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                    <div class="form-wrap">
+                                        <form action="#">
+                                            @Html.ValidationSummary(true, "", new{ @class = "text-danger"})
+                                            <div class="form-group">
+                                                <label class="control-label mb-10" for="InputEmail">Email address</label>
+                                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter email" })
+                                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="pull-left control-label mb-10" for="Inputpwd">Password</label>                                               
+                                                @Html.ActionLink("forgot password ?", "ForgotPassword", null, new { @class="capitalize-font txt-primary block mb-10 pull-right font-12"})
+                                                <div class="clearfix"></div>
+                                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter password" })
+                                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="checkbox checkbox-primary pr-10 pull-left">
+                                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                                    @Html.LabelFor(m => m.RememberMe)
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="form-group text-center">
+                                                <button type="submit" class="btn btn-info btn-rounded">sign in</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                            }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Row -->
+            </div>
+
+        </div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /#wrapper -->
+    <!-- JavaScript -->
+    <!-- jQuery -->
+    <script src="~/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/vendors/bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
+
+    <!-- Slimscroll JavaScript -->
+    <script src="~/dist/js/jquery.slimscroll.js"></script>
+
+    <!-- Init JavaScript -->
+    <script src="~/dist/js/init.js"></script>
+</body>
+</html>
